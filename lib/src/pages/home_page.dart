@@ -47,8 +47,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ClipRRect(
                   borderRadius: BorderRadius.circular(20.0),
-                  child:
-                      Image(image: AssetImage('assets/imgs/logo_dummy.png'))),
+                  child: Image(image: AssetImage('assets/imgs/logo_dummy.png'))),
               SizedBox(
                 height: 15.0,
               ),
@@ -73,7 +72,9 @@ class _HomePageState extends State<HomePage> {
                 child: RaisedButton(
                   color: Colors.white,
                   child: Text('Entrar'),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('estatus');
+                  },
                 ),
               ),
               Container(
@@ -84,7 +85,9 @@ class _HomePageState extends State<HomePage> {
                     'Dispositivo',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('estatus');
+                  },
                 ),
               )
             ],
