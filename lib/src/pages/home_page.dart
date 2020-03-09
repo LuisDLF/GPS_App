@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -22,7 +23,9 @@ class _HomePageState extends State<HomePage> {
         Container(
           height: double.infinity,
           width: double.infinity,
-          decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Colors.blue, Colors.white])),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Colors.blue, Colors.white])),
         ),
         SingleChildScrollView(
           child: Container(
@@ -47,7 +50,9 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 30.0,
               ),
-              ClipRRect(borderRadius: BorderRadius.circular(20.0), child: Image(image: AssetImage('assets/imgs/walk_safe.png'))),
+              ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: Image(image: AssetImage('assets/imgs/walk_safe.png'))),
               SizedBox(
                 height: 15.0,
               ),
@@ -98,10 +103,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   _login(BuildContext context) async {
-    final resp = await http.post('http://sweetnightmare.xyz/services/Login_Disp.php', body: {'Nombre': this.account, 'Contrasena': this.password});
+    final resp = await http.post('http://sotepsa.com/services/Login_Disp.php',
+        body: {'Nombre': this.account, 'Contrasena': this.password});
 
     try {
       final data = jsonDecode(resp.body);
+      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+      sharedPreferences.setInt('Id_Disp', int.parse(data[0]['Id_Dispositivo']));
+
       Navigator.pushReplacementNamed(context, 'estatus', arguments: data[0]);
     } catch (e) {
       print('Error: ' + e.toString());
@@ -112,8 +121,7 @@ class _HomePageState extends State<HomePage> {
           timeInSecForIos: 1,
           backgroundColor: Colors.red,
           textColor: Colors.white,
-          fontSize: 16.0
-      );
+          fontSize: 16.0);
     }
   }
 }

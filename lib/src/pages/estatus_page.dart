@@ -5,9 +5,6 @@ import 'package:gps_app/src/models/dispositivo_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:geolocator/geolocator.dart';
 
-// https://sweetnightmare.xyz/services/Gps_Upload.php
-// https://sweetnightmare.xyz/services/Gps_read.php
-
 class EstatusPage extends StatefulWidget {
   @override
   _EstatusPageState createState() => _EstatusPageState();
